@@ -64,7 +64,7 @@ export default function Workspace({ onAnalysisComplete }: WorkspaceProps) {
     });
 
     try {
-      const response = await fetch('/api/docs/upload', {
+      const response = await fetch('http://localhost:8000/upload', {
         method: 'POST',
         body: formData,
       });
@@ -88,13 +88,13 @@ export default function Workspace({ onAnalysisComplete }: WorkspaceProps) {
   return (
     <div className="h-full flex flex-col p-8 max-w-5xl mx-auto">
       <div className="mb-12">
-        <SplitText 
-          text="Neural Workspace" 
+        <SplitText
+          text="Neural Workspace"
           className="text-4xl font-bold text-white mb-4"
           delay={50}
         />
         <p className="text-zinc-500 max-w-2xl">
-          Upload your organization's documents to train the neural engine. 
+          Upload your organization's documents to train the neural engine.
           We support folders, PDF, Markdown, and Text files.
         </p>
       </div>
@@ -102,21 +102,20 @@ export default function Workspace({ onAnalysisComplete }: WorkspaceProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 flex-1 overflow-hidden">
         {/* Upload Area */}
         <div className="lg:col-span-2 flex flex-col gap-6 overflow-hidden">
-          <div 
+          <div
             onDragEnter={handleDrag}
             onDragLeave={handleDrag}
             onDragOver={handleDrag}
             onDrop={handleDrop}
-            className={`relative flex-1 border-2 border-dashed rounded-3xl transition-all flex flex-col items-center justify-center p-12 text-center group ${
-              dragActive 
-                ? 'border-emerald-500 bg-emerald-500/5' 
+            className={`relative flex-1 border-2 border-dashed rounded-3xl transition-all flex flex-col items-center justify-center p-12 text-center group ${dragActive
+                ? 'border-emerald-500 bg-emerald-500/5'
                 : 'border-zinc-800 bg-zinc-900/20 hover:border-zinc-700 hover:bg-zinc-900/40'
-            }`}
+              }`}
           >
             <div className="w-20 h-20 rounded-2xl bg-zinc-800 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Upload className={dragActive ? "text-emerald-500" : "text-zinc-500"} size={32} />
             </div>
-            
+
             <h3 className="text-xl font-bold text-white mb-2">
               {dragActive ? "Drop to upload" : "Drag & drop files or folders"}
             </h3>
@@ -125,13 +124,13 @@ export default function Workspace({ onAnalysisComplete }: WorkspaceProps) {
             </p>
 
             <div className="flex gap-4">
-              <button 
+              <button
                 onClick={() => folderInputRef.current?.click()}
                 className="px-6 py-3 rounded-xl bg-zinc-800 text-white font-bold hover:bg-zinc-700 transition-all flex items-center gap-2"
               >
                 <Folder size={18} /> Select Folder
               </button>
-              <button 
+              <button
                 onClick={() => fileInputRef.current?.click()}
                 className="px-6 py-3 rounded-xl bg-white text-black font-bold hover:bg-zinc-200 transition-all flex items-center gap-2"
               >
@@ -139,19 +138,19 @@ export default function Workspace({ onAnalysisComplete }: WorkspaceProps) {
               </button>
             </div>
 
-            <input 
-              type="file" 
-              ref={fileInputRef} 
-              onChange={handleFileChange} 
-              multiple 
-              className="hidden" 
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              multiple
+              className="hidden"
             />
-            <input 
-              type="file" 
-              ref={folderInputRef} 
-              onChange={handleFileChange} 
-              multiple 
-              className="hidden" 
+            <input
+              type="file"
+              ref={folderInputRef}
+              onChange={handleFileChange}
+              multiple
+              className="hidden"
             />
           </div>
         </div>
@@ -161,7 +160,7 @@ export default function Workspace({ onAnalysisComplete }: WorkspaceProps) {
           <div className="p-6 border-bottom border-zinc-800 flex items-center justify-between">
             <h4 className="text-sm font-bold text-white uppercase tracking-widest">Queue ({files.length})</h4>
             {files.length > 0 && (
-              <button 
+              <button
                 onClick={() => setFiles([])}
                 className="text-[10px] text-zinc-500 hover:text-red-500 transition-colors uppercase font-bold"
               >
@@ -193,7 +192,7 @@ export default function Workspace({ onAnalysisComplete }: WorkspaceProps) {
                       <p className="text-xs text-white truncate font-medium">{file.name}</p>
                       <p className="text-[10px] text-zinc-600 font-mono">{(file.size / 1024).toFixed(1)} KB</p>
                     </div>
-                    <button 
+                    <button
                       onClick={() => removeFile(i)}
                       className="p-1.5 rounded-lg hover:bg-red-500/10 hover:text-red-500 text-zinc-600 transition-all opacity-0 group-hover:opacity-100"
                     >

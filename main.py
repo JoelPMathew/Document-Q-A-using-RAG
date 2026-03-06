@@ -1,5 +1,8 @@
 from typing import List, Optional
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, status, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
+import os
+import shutil
 from pydantic import BaseModel, ConfigDict
 from loguru import logger
 import uvicorn
@@ -33,6 +36,14 @@ app = FastAPI(
     version="1.0.0"
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Initialize RAG Pipeline lazily to avoid immediate crash on start if no docs
 rag_pipeline: Optional[RAGPipeline] = None
 
@@ -52,6 +63,37 @@ async def startup_event():
         logger.info("RAG pipeline fully warmed up and ready.")
     except Exception as e:
         logger.error(f"Failed to load RAG Pipeline. Ensure models format correctly. Error: {e}")
+
+@app.post("/upload")
+async def upload_documents(files: List[UploadFile] = File(...)):
+    """
+    Accepts files and saves them to the local docs/ directory.
+    Triggers a hot-rebuild of the FAISS index and RAG pipeline.
+    """
+    logger.info(f"Received {len(files)} files to upload.")
+    docs_dir = os.path.join(os.getcwd(), "docs")
+    os.makedirs(docs_dir, exist_ok=True)
+    
+    saved_files = []
+    for file in files:
+        file_path = os.path.join(docs_dir, file.filename)
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+        saved_files.append(file.filename)
+    
+    logger.info("Files saved successfully. Rebuilding vector store...")
+    try:
+        build_vector_store()
+        global rag_pipeline
+        rag_pipeline = RAGPipeline()
+        logger.info("RAG Pipeline successfully hot-reloaded with new documents.")
+        return {"success": True, "files": saved_files, "message": "Documents indexed successfully."}
+    except Exception as e:
+        logger.error(f"Error rebuilding index: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Uploaded files but failed to rebuild index: {str(e)}"
+        )
 
 @app.post("/ask", response_model=AskResponse)
 async def ask_question(request: AskRequest):

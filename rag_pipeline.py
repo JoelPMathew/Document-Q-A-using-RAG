@@ -57,12 +57,12 @@ Answer:"""
         if not scores:
             return "low"
             
-        avg_score = sum(scores) / len(scores)
+        max_score = max(scores)
         
         # Qualitative thresholds based on Cosine Similarity (0 to 1, where 1 is exact)
-        if avg_score > 0.7:
+        if max_score > 0.11:
             return "high"
-        elif avg_score > 0.4:
+        elif max_score > 0.08:
             return "medium"
         else:
             return "low"

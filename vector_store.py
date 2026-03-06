@@ -55,8 +55,7 @@ class VectorStore:
              pickle.dump(self.document_metadata, f)
 
     def embed_texts(self, texts: List[str]) -> np.ndarray:
-        """Generates embeddings for a list of texts and returns a numpy array."""
-        embeddings = self.embedding_model.encode(texts, show_progress_bar=False)
+        embeddings = self.embedding_model.encode(texts, show_progress_bar=False, normalize_embeddings=True)
         return np.array(embeddings, dtype=np.float32)
 
     def add_documents(self, documents: List[Dict[str, Any]]):

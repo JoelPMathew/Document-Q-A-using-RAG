@@ -19,19 +19,19 @@ interface LandingPageProps {
 export default function LandingPage({ onNavigate }: LandingPageProps) {
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 selection:bg-emerald-500/30 overflow-x-hidden">
-      <GridScan 
-        enableWebcam={false} 
-        showPreview={false} 
+      <GridScan
+        enableWebcam={false}
+        showPreview={false}
         scanOnClick={true}
         bloomIntensity={0.5}
       />
-      
+
       {/* Hero Section */}
       <header className="relative pt-32 pb-40 px-6 max-w-7xl mx-auto text-center overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-30">
           <Prism />
         </div>
-        
+
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Particles
             particleCount={300}
@@ -54,7 +54,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-medium mb-8"
           >
             <Sparkles size={14} />
-            <span>Nexus v1.0 is now live</span>
+            <span>InsightBot v1.0 is now live</span>
           </motion.div>
 
           <SplitText
@@ -79,7 +79,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
             transition={{ delay: 0.5 }}
             className="flex flex-wrap justify-center gap-4"
           >
-            <button 
+            <button
               onClick={() => onNavigate('workspace')}
               className="px-8 py-4 rounded-2xl bg-emerald-500 text-black font-semibold hover:bg-emerald-400 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.3)]"
             >
@@ -104,9 +104,9 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
       <section className="py-32 px-6 bg-zinc-950/50">
         <div className="max-w-7xl mx-auto mb-20">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-4">Neural Modules</h2>
-          <p className="text-zinc-500 max-w-xl">Explore the core components of the Nexus ecosystem, designed for seamless integration and maximum throughput.</p>
+          <p className="text-zinc-500 max-w-xl">Explore the core components of the InsightBot ecosystem, designed for seamless integration and maximum throughput.</p>
         </div>
-        <FlowingMenu 
+        <FlowingMenu
           items={[
             { text: "Core Intelligence", image: "https://picsum.photos/seed/ai1/800/800" },
             { text: "Vector Memory", image: "https://picsum.photos/seed/ai2/800/800" },
@@ -133,7 +133,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
                   Experience the power of Gemini 3 Flash with our optimized neural interface. Real-time reasoning, multi-modal support, and persistent memory.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => onNavigate('workspace')}
                 className="flex items-center gap-2 text-emerald-500 font-medium hover:gap-3 transition-all"
               >
@@ -153,7 +153,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
                   Secure, encrypted storage for your neural data. Persistent history and vector-search ready.
                 </p>
               </div>
-              <button 
+              <button
                 onClick={() => onNavigate('knowledge')}
                 className="flex items-center gap-2 text-blue-500 font-medium hover:gap-3 transition-all"
               >
@@ -170,7 +170,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
           <h2 className="text-3xl font-bold text-white mb-4">Neural Infrastructure</h2>
           <p className="text-zinc-500">Scale your operations with our distributed neural network.</p>
         </div>
-        <ElasticSlider 
+        <ElasticSlider
           slides={[
             {
               title: "Distributed Compute",
@@ -195,9 +195,9 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
       <section className="py-24 px-6 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
         <div>
           <h2 className="text-3xl font-bold text-white mb-8">Onboarding Protocol</h2>
-          <Stepper 
+          <Stepper
             steps={[
-              { title: "Neural Linkage", description: "Establish a secure connection to the Nexus Core." },
+              { title: "Neural Linkage", description: "Establish a secure connection to the InsightBot Core." },
               { title: "Identity Verification", description: "Biometric and cryptographic handshake." },
               { title: "Workspace Provisioning", description: "Allocating dedicated neural compute resources." },
               { title: "Operational Status", description: "Full system access granted." }
@@ -215,7 +215,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
           </div>
           <div className="p-8 rounded-3xl bg-emerald-500/5 border border-emerald-500/10">
             <p className="text-zinc-400 text-sm leading-relaxed italic">
-              "Nexus has transformed our development workflow. The neural workspace is unlike anything we've used before."
+              "InsightBot has transformed our development workflow. The neural workspace is unlike anything we've used before."
             </p>
             <div className="mt-4 flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-zinc-800" />
@@ -252,7 +252,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
             </div>
           </div>
           <div className="flex-1 flex justify-center">
-            <CurvedLoop 
+            <CurvedLoop
               radius={180}
               items={[
                 <Bot key="1" className="text-emerald-500" />,
@@ -274,7 +274,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
             <div className="w-6 h-6 rounded-md bg-white flex items-center justify-center">
               <div className="w-3 h-3 bg-black rounded-sm rotate-45"></div>
             </div>
-            <span className="text-white font-bold tracking-tight">NEXUS</span>
+            <span className="text-white font-bold tracking-tight text-xl">InsightBot</span>
           </div>
           <div className="flex gap-8 text-sm text-zinc-500">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>

@@ -1,0 +1,5 @@
+{
+  "name": "Nexus AI Workspace",
+  "description": "A sophisticated multi-modal AI workspace powered by Gemini, featuring real-time chat and persistent history.",
+  "requestFramePermissions": []
+}

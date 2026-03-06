@@ -1,0 +1,10 @@
+# IT Support FAQ
+
+## How do I reset my password?
+You can reset your password by visiting https://sso.nexus.ai/reset. You will need your employee ID and access to your registered mobile device for MFA.
+
+## What should I do if my laptop is stolen?
+Report the theft immediately to the IT Security team at security@nexus.ai and file a police report. IT will remotely wipe the device.
+
+## How do I request new software?
+Submit a ticket through the Jira Service Desk under the "Software Request" category. Approval from your manager is required for paid licenses.
